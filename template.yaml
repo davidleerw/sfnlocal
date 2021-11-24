@@ -1,0 +1,41 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  sam-app
+
+  Sample SAM Template for sam-app
+
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  MorningFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: lambda-functions
+      Handler: morning.lambdaHandler
+      Runtime: nodejs14.x
+  AfternoonFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: lambda-functions
+      Handler: afternoon.lambdaHandler
+      Runtime: nodejs14.x
+  NightFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: lambda-functions
+      Handler: night.lambdaHandler
+      Runtime: nodejs14.x
+
+Outputs:
+  MorningFunction:
+    Description: "Good morning function"
+    Value: !GetAtt MorningFunction.Arn
+  AfternoonFunction:
+    Description: "Good afternoon function"
+    Value: !GetAtt AfternoonFunction.Arn
+  NightFunction:
+    Description: "Good night function"
+    Value: !GetAtt NightFunction.Arn
